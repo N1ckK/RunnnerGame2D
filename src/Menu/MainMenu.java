@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 public class MainMenu {
 	
+	// Parameters for Main Menu JFrame
 	public MainMenu(int score){
 		JFrame f = new JFrame("Main Menu");
 		f.setContentPane(new MainMenuContent(f, score));
@@ -15,6 +16,7 @@ public class MainMenu {
 			
 	}
 	
+	// Main
 	public static void main (String[] args){
 		new MainMenu(0);
 	}

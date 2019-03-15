@@ -1,6 +1,5 @@
 package Main;
 
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -25,8 +24,6 @@ public class Player implements Runnable {
 	private int velX;
 	
 	private Thread thread;
-	private int key;
-	
 	
 	public Player(){
 		playerSprites = new BufferedImage[3];
@@ -50,7 +47,7 @@ public class Player implements Runnable {
 			currentImage = playerSprites[index];
 			x += velX;
 			try {
-				thread.sleep(2);
+				Thread.sleep(2);
 				wait ++;
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -68,22 +65,26 @@ public class Player implements Runnable {
 		return new Rectangle(getX(), getY(), getImage().getWidth(), getImage().getHeight());
 	}
 	
-	public void keyPressed(int key){
-		if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
+	boolean left, right;
+	
+	public void keyHandler(int key, int keyR){
+		if (key == KeyEvent.VK_A) left = true;
+		if (key == KeyEvent.VK_D) right = true;
+		if (keyR == KeyEvent.VK_A) left = false;
+		if (keyR == KeyEvent.VK_D) right = false;
+		
+		if (left && right){
+			velX = 0; 
+			return;
+		}
+		if (left){
 			velX = -1;
 		}
-		if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
+		if (right){
 			velX = 1;
 		}
-	}
-	
-	public void keyReleased(int key){
-		if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
-			velX = 0;
-		}
-		if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-			velX = 0;
-		}
+		if (!right && !left) velX = 0;
+		
 	}
 	
 	public void setX(int x){

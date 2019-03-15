@@ -5,7 +5,9 @@ import java.awt.Point;
 import javax.swing.JFrame;
 
 public class Game {
-	
+
+	// creates the jframe for the game
+	// this constructur is called by mainmenucontent/actionperformed/startbutton
 	public Game(){
 		JFrame f = new JFrame();
 		f.setVisible(true);

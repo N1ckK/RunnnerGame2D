@@ -10,13 +10,14 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class PowerUp extends JPanel {
-	
+
 	int x;
 	int y;
 	int selectedPowerUp;
 	BufferedImage[] image;
-	
+
 	public PowerUp(JPanel p, int YBACKGROUND, int powerUp){
 		image = new BufferedImage[3];
 		selectedPowerUp = powerUp;
@@ -31,13 +32,13 @@ public class PowerUp extends JPanel {
 		x = r.nextInt(p.getWidth() - image[selectedPowerUp].getWidth());
 		y = r.nextInt(p.getHeight()) - YBACKGROUND - 750;
 	}
-	
+
 	public void paint(Graphics g2){
-		g2.drawImage(image[selectedPowerUp],x,y,null);	
+		g2.drawImage(image[selectedPowerUp],x ,y ,null);
 	}
-	
+
 	public Rectangle getRectangle(){
-		return new Rectangle(x,y,image[selectedPowerUp].getWidth(),image[selectedPowerUp].getHeight());
+		return new Rectangle(x,y,image[selectedPowerUp].getWidth(), image[selectedPowerUp].getHeight());
 	}
 
 	public int getPowerUpType(){
